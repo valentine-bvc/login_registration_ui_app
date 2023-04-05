@@ -24,6 +24,11 @@ __published:	// IDE-managed Components
 	TButton *RegisterButton;
 	TEdit *NameEdit;
 	void __fastcall RegisterButtonClick(TObject *Sender);
+	void __fastcall NameEditClick(TObject *Sender);
+	void __fastcall AgeEditClick(TObject *Sender);
+	void __fastcall UsernameEditClick(TObject *Sender);
+	void __fastcall PasswordEditClick(TObject *Sender);
+	void __fastcall AgeEditCanFocus(TObject *Sender, bool &ACanFocus);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TMyRegistrationForm(TComponent* Owner);
