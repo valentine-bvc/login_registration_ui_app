@@ -1,0 +1,109 @@
+object MyRegistrationForm: TMyRegistrationForm
+  Left = 0
+  Top = 0
+  BorderStyle = Single
+  Caption = 'Registration'
+  ClientHeight = 330
+  ClientWidth = 300
+  Position = ScreenCenter
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object NameLabel: TLabel
+    StyledSettings = [Family, FontColor]
+    Position.X = 16.000000000000000000
+    Position.Y = 21.000000000000000000
+    Size.Width = 57.000000000000000000
+    Size.Height = 28.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 13.000000000000000000
+    Text = 'Name'
+    TabOrder = 0
+  end
+  object AgeEdit: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 1
+    MaxLength = 2
+    Position.X = 96.000000000000000000
+    Position.Y = 64.000000000000000000
+    Size.Width = 177.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object UsernameEdit: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 2
+    MaxLength = 30
+    Position.X = 96.000000000000000000
+    Position.Y = 112.000000000000000000
+    Size.Width = 177.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object PasswordEdit: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 3
+    Password = True
+    MaxLength = 30
+    Position.X = 96.000000000000000000
+    Position.Y = 160.000000000000000000
+    Size.Width = 177.000000000000000000
+    Size.Height = 28.000000000000000000
+    Size.PlatformDefault = False
+  end
+  object AgeLabel: TLabel
+    StyledSettings = [Family, FontColor]
+    Position.X = 17.000000000000000000
+    Position.Y = 72.000000000000000000
+    Size.Width = 56.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 13.000000000000000000
+    Text = 'Age'
+    TabOrder = 4
+  end
+  object UsernameLabel: TLabel
+    StyledSettings = [Family, FontColor]
+    Position.X = 17.000000000000000000
+    Position.Y = 112.000000000000000000
+    Size.Width = 71.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 13.000000000000000000
+    Text = 'Username'
+    TabOrder = 5
+  end
+  object PasswordLabel: TLabel
+    StyledSettings = [Family, FontColor]
+    Position.X = 17.000000000000000000
+    Position.Y = 160.000000000000000000
+    Size.Width = 57.000000000000000000
+    Size.Height = 28.000000000000000000
+    Size.PlatformDefault = False
+    TextSettings.Font.Size = 13.000000000000000000
+    Text = 'Password'
+    TabOrder = 6
+  end
+  object SignupButton: TButton
+    StyledSettings = [Family, Style, FontColor]
+    Position.X = 96.000000000000000000
+    Position.Y = 259.000000000000000000
+    Size.Width = 97.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 7
+    Text = 'Signup'
+    TextSettings.Font.Size = 13.000000000000000000
+  end
+  object NameEdit: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 8
+    MaxLength = 30
+    Position.X = 96.000000000000000000
+    Position.Y = 19.000000000000000000
+    Size.Width = 177.000000000000000000
+    Size.Height = 30.000000000000000000
+    Size.PlatformDefault = False
+  end
+end
