@@ -3,33 +3,19 @@
 #include <fmx.h>
 #pragma hdrstop
 
-#include "MainForm.h"
-#include "RegistrationForm.h"
-#include "LoginForm.h"
+#include "PopupBox.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.fmx"
-TMyMainForm *MyMainForm;
+TMyInfoBox *MyInfoBox;
 //---------------------------------------------------------------------------
-__fastcall TMyMainForm::TMyMainForm(TComponent* Owner)
+__fastcall TMyInfoBox::TMyInfoBox(TComponent* Owner)
 	: TForm(Owner)
 {
 }
 //---------------------------------------------------------------------------
-void __fastcall TMyMainForm::RegisterButtonClick(TObject *Sender)
+void __fastcall TMyInfoBox::OKButtonClick(TObject *Sender)
 {
-		MyLoginForm->Close();
-		MyRegistrationForm->Show();
-
-
+   this->Close();
 }
 //---------------------------------------------------------------------------
-
-void __fastcall TMyMainForm::LoginButtonClick(TObject *Sender)
-{
-		 MyRegistrationForm->Close();
-		 MyLoginForm->Show();
-
-}
-//---------------------------------------------------------------------------
-

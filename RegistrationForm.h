@@ -21,8 +21,9 @@ __published:	// IDE-managed Components
 	TLabel *AgeLabel;
 	TLabel *UsernameLabel;
 	TLabel *PasswordLabel;
-	TButton *SignupButton;
+	TButton *RegisterButton;
 	TEdit *NameEdit;
+	void __fastcall RegisterButtonClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TMyRegistrationForm(TComponent* Owner);

@@ -10,6 +10,7 @@
 USEFORM("RegistrationForm.cpp", MyRegistrationForm);
 USEFORM("MainForm.cpp", MyMainForm);
 USEFORM("LoginForm.cpp", MyLoginForm);
+USEFORM("PopupBox.cpp", MyInfoBox);
 //---------------------------------------------------------------------------
 extern "C" int FMXmain()
 {
@@ -19,6 +20,7 @@ extern "C" int FMXmain()
 		Application->CreateForm(__classid(TMyMainForm), &MyMainForm);
 		Application->CreateForm(__classid(TMyLoginForm), &MyLoginForm);
 		Application->CreateForm(__classid(TMyRegistrationForm), &MyRegistrationForm);
+		Application->CreateForm(__classid(TMyInfoBox), &MyInfoBox);
 		Application->Run();
 	}
 	catch (Exception &exception)

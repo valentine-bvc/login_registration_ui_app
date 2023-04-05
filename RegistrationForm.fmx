@@ -1,7 +1,8 @@
 object MyRegistrationForm: TMyRegistrationForm
   Left = 0
   Top = 0
-  BorderStyle = Single
+  BorderIcons = [biSystemMenu]
+  BorderStyle = ToolWindow
   Caption = 'Registration'
   ClientHeight = 330
   ClientWidth = 300
@@ -85,7 +86,7 @@ object MyRegistrationForm: TMyRegistrationForm
     Text = 'Password'
     TabOrder = 6
   end
-  object SignupButton: TButton
+  object RegisterButton: TButton
     StyledSettings = [Family, Style, FontColor]
     Position.X = 96.000000000000000000
     Position.Y = 259.000000000000000000
@@ -93,8 +94,9 @@ object MyRegistrationForm: TMyRegistrationForm
     Size.Height = 25.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 7
-    Text = 'Signup'
+    Text = 'Register'
     TextSettings.Font.Size = 13.000000000000000000
+    OnClick = RegisterButtonClick
   end
   object NameEdit: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]

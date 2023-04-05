@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 
-#ifndef MainFormH
-#define MainFormH
+#ifndef PopupBoxH
+#define PopupBoxH
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <FMX.Controls.hpp>
@@ -10,18 +10,17 @@
 #include <FMX.StdCtrls.hpp>
 #include <FMX.Types.hpp>
 //---------------------------------------------------------------------------
-class TMyMainForm : public TForm
+class TMyInfoBox : public TForm
 {
 __published:	// IDE-managed Components
-	TButton *RegisterButton;
-	TButton *LoginButton;
-	void __fastcall RegisterButtonClick(TObject *Sender);
-	void __fastcall LoginButtonClick(TObject *Sender);
+	TButton *OKButton;
+	TLabel *InfoLabel;
+	void __fastcall OKButtonClick(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
-	__fastcall TMyMainForm(TComponent* Owner);
+	__fastcall TMyInfoBox(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TMyMainForm *MyMainForm;
+extern PACKAGE TMyInfoBox *MyInfoBox;
 //---------------------------------------------------------------------------
 #endif

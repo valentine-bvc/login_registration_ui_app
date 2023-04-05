@@ -2,7 +2,8 @@ object MyMainForm: TMyMainForm
   Left = 0
   Top = 0
   Border.Styling = False
-  BorderStyle = Single
+  BorderIcons = [biSystemMenu]
+  BorderStyle = ToolWindow
   Caption = 'Main'
   ClientHeight = 100
   ClientWidth = 300
@@ -11,7 +12,7 @@ object MyMainForm: TMyMainForm
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   DesignerMasterStyle = 0
-  object SingupButton: TButton
+  object RegisterButton: TButton
     StyledSettings = [Family, Style, FontColor]
     Position.X = 24.000000000000000000
     Position.Y = 40.000000000000000000
@@ -19,9 +20,9 @@ object MyMainForm: TMyMainForm
     Size.Height = 25.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    Text = 'Singup'
+    Text = 'Register'
     TextSettings.Font.Size = 13.000000000000000000
-    OnClick = SingupButtonClick
+    OnClick = RegisterButtonClick
   end
   object LoginButton: TButton
     StyledSettings = [Family, Style, FontColor]

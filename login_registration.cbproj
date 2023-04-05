@@ -167,6 +167,12 @@
             <DependentOn>MainForm.h</DependentOn>
             <BuildOrder>1</BuildOrder>
         </CppCompile>
+        <CppCompile Include="PopupBox.cpp">
+            <Form>MyInfoBox</Form>
+            <FormType>fmx</FormType>
+            <DependentOn>PopupBox.h</DependentOn>
+            <BuildOrder>5</BuildOrder>
+        </CppCompile>
         <CppCompile Include="RegistrationForm.cpp">
             <Form>MyRegistrationForm</Form>
             <FormType>fmx</FormType>
@@ -176,6 +182,7 @@
         <FormResources Include="RegistrationForm.fmx"/>
         <FormResources Include="MainForm.fmx"/>
         <FormResources Include="LoginForm.fmx"/>
+        <FormResources Include="PopupBox.fmx"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

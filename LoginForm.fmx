@@ -1,7 +1,8 @@
 object MyLoginForm: TMyLoginForm
   Left = 0
   Top = 0
-  BorderStyle = Single
+  BorderIcons = [biSystemMenu]
+  BorderStyle = ToolWindow
   Caption = 'Login'
   ClientHeight = 330
   ClientWidth = 300
