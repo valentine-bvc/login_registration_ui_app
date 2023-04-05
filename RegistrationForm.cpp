@@ -7,6 +7,9 @@
 #include "RegistrationForm.h"
 #include "PopupBox.h"
 #include <fstream>
+#include <sstream>
+#include <string>
+#include <iostream>
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
@@ -15,6 +18,7 @@ TMyRegistrationForm *MyRegistrationForm;
 const String err_message {"DETAILS REQUIRED"};
 
 void clear_input_boxes();
+bool check_user(std::string);
 //---------------------------------------------------------------------------
 __fastcall TMyRegistrationForm::TMyRegistrationForm(TComponent* Owner)
 	: TForm(Owner)
@@ -34,23 +38,38 @@ void __fastcall TMyRegistrationForm::RegisterButtonClick(TObject *Sender)
 			 MyRegistrationForm->NameEdit->Text != err_message &&
 			 MyRegistrationForm->AgeEdit->Text != err_message &&
 			 MyRegistrationForm->UsernameEdit->Text != err_message &&
-			 MyRegistrationForm->PasswordEdit->Text != err_message){
+			 MyRegistrationForm->PasswordEdit->Text != err_message) {
+
 			  AnsiString name = MyRegistrationForm->NameEdit->Text;
 			  AnsiString age = MyRegistrationForm->AgeEdit->Text;
 			  AnsiString username = MyRegistrationForm->UsernameEdit->Text;
 			  AnsiString password = MyRegistrationForm->PasswordEdit->Text;
 
+			  std::string target = static_cast<std::string>(username);
 
-			  saved_accounts << name << "," << age << "," << username << "," <<password;
+
+			  if(check_user(target) == false){
+
+			  saved_accounts << name << "," << age << "," << username << "," <<password << "\n";
+			  MyInfoBox->Caption =  "Success!";
+			  MyInfoBox->InfoLabel->Text =  "Account registered!";
+              MyInfoBox->Show();
+
+			  this->Close();
+			   }
+			   else {
+				  MyInfoBox->Caption =  "Error!";
+			  MyInfoBox->InfoLabel->Text =  "Username already registered!";
+			  MyInfoBox->Show();
+
+
+               }
 
 			  saved_accounts.close();
 
-			   MyInfoBox->Caption =  "Success!";
-			  MyInfoBox->InfoLabel->Text =  "Account registered!";
 
-			  MyInfoBox->Show();
 
-			  this->Close();
+
 			  clear_input_boxes();
 
 
@@ -74,7 +93,7 @@ void __fastcall TMyRegistrationForm::RegisterButtonClick(TObject *Sender)
 					 PasswordEdit->Password = false;
 					 MyRegistrationForm->PasswordEdit->Text =   err_message;
 				 }
-             }
+			 }
 }
 //---------------------------------------------------------------------------
 
@@ -123,8 +142,50 @@ void __fastcall TMyRegistrationForm::AgeEditCanFocus(TObject *Sender, bool &ACan
 }
 //---------------------------------------------------------------------------
    void clear_input_boxes(){
+
+            MyRegistrationForm->PasswordEdit->Password = true;
+			MyRegistrationForm->AgeEdit->MaxLength = 2;
 			MyRegistrationForm->NameEdit->Text = "";
 			MyRegistrationForm->AgeEdit->Text = "";
 			MyRegistrationForm->UsernameEdit->Text = "";
 			MyRegistrationForm->PasswordEdit->Text = "";
+
    }
+void __fastcall TMyRegistrationForm::FormClose(TObject *Sender, TCloseAction &Action)
+
+{
+		   clear_input_boxes();
+
+}
+//---------------------------------------------------------------------------
+
+bool check_user(std::string target){
+	   std::fstream saved_accounts;
+	   saved_accounts.open("Data/accounts.data", ios::in);
+	   std::string line {};
+	   std::string word {};
+	   if(!saved_accounts.is_open()) {
+	   saved_accounts.close();
+			return true;
+	   }
+
+	   while(getline(saved_accounts,line)){
+
+		 std::stringstream ss{line};
+		 for(size_t i {}; i < 3;i++)  {
+			  word.clear();
+			  getline(ss, word, ',');
+		 }
+		 if(word == target) {
+		 saved_accounts.close();
+			return true;
+         }
+
+	   }
+			 saved_accounts.close();
+			 return false;
+}
+
+
+
+

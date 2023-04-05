@@ -29,6 +29,7 @@ __published:	// IDE-managed Components
 	void __fastcall UsernameEditClick(TObject *Sender);
 	void __fastcall PasswordEditClick(TObject *Sender);
 	void __fastcall AgeEditCanFocus(TObject *Sender, bool &ACanFocus);
+	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TMyRegistrationForm(TComponent* Owner);
