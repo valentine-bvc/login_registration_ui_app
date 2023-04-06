@@ -172,7 +172,7 @@ bool check_user(std::string target){
 
 	   while(getline(saved_accounts,line)){
 
-		 std::stringstream ss{line};
+		 std::stringstream ss{decode(line)};
 		 for(size_t i {}; i < 3;i++)  {
 			  word.clear();
 			  getline(ss, word, ',');
