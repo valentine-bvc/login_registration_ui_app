@@ -148,6 +148,9 @@
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
     </PropertyGroup>
     <ItemGroup>
+        <None Include="encrypter.h">
+            <BuildOrder>6</BuildOrder>
+        </None>
         <CppCompile Include="LoginForm.cpp">
             <Form>MyLoginForm</Form>
             <FormType>fmx</FormType>
@@ -179,10 +182,10 @@
             <DependentOn>RegistrationForm.h</DependentOn>
             <BuildOrder>4</BuildOrder>
         </CppCompile>
-        <FormResources Include="RegistrationForm.fmx"/>
         <FormResources Include="MainForm.fmx"/>
-        <FormResources Include="LoginForm.fmx"/>
         <FormResources Include="PopupBox.fmx"/>
+        <FormResources Include="RegistrationForm.fmx"/>
+        <FormResources Include="LoginForm.fmx"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

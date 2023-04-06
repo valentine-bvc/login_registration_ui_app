@@ -6,6 +6,7 @@
 #include "MainForm.h"
 #include "RegistrationForm.h"
 #include "PopupBox.h"
+#include "encrypter.h"
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -49,11 +50,11 @@ void __fastcall TMyRegistrationForm::RegisterButtonClick(TObject *Sender)
 
 
 			  if(check_user(target) == false){
-
-			  saved_accounts << name << "," << age << "," << username << "," <<password << "\n";
+				std::string send =  static_cast<std::string>(name) + "," + static_cast<std::string>(age) + "," + static_cast<std::string>(username) + "," + static_cast<std::string>(password);
+			  saved_accounts << encode(send) << "\n";
 			  MyInfoBox->Caption =  "Success!";
 			  MyInfoBox->InfoLabel->Text =  "Account registered!";
-              MyInfoBox->Show();
+			  MyInfoBox->Show();
 
 			  this->Close();
 			   }
