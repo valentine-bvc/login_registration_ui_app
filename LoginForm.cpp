@@ -180,3 +180,9 @@ void __fastcall TMyLoginForm::PasswordEditClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TMyLoginForm::FormClose(TObject *Sender, TCloseAction &Action)
+{
+           clear_input_boxes();
+}
+//---------------------------------------------------------------------------
+

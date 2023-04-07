@@ -18,8 +18,9 @@
 TMyRegistrationForm *MyRegistrationForm;
 const String err_message {"DETAILS REQUIRED"};
 
-void clear_input_boxes();
+void clear_input();
 bool check_user(std::string);
+bool is_digits(const std::string &str);
 //---------------------------------------------------------------------------
 __fastcall TMyRegistrationForm::TMyRegistrationForm(TComponent* Owner)
 	: TForm(Owner)
@@ -30,6 +31,8 @@ void __fastcall TMyRegistrationForm::RegisterButtonClick(TObject *Sender)
 {
 			 std::fstream saved_accounts;
 			 saved_accounts.open("Data/accounts.data", ios::app);
+			 AnsiString age_c = MyRegistrationForm->AgeEdit->Text;
+			 const std::string age_check =  static_cast<std::string>(age_c);
 
 			 if(saved_accounts.is_open() &&
 			 MyRegistrationForm->NameEdit->Text != "" &&
@@ -39,12 +42,10 @@ void __fastcall TMyRegistrationForm::RegisterButtonClick(TObject *Sender)
 			 MyRegistrationForm->NameEdit->Text != err_message &&
 			 MyRegistrationForm->AgeEdit->Text != err_message &&
 			 MyRegistrationForm->UsernameEdit->Text != err_message &&
-			 MyRegistrationForm->PasswordEdit->Text != err_message) {
+			 MyRegistrationForm->PasswordEdit->Text != err_message &&
+			 is_digits(age_check)) {
 
-			 MyRegistrationForm->NameEdit->Opacity = 1.0;
-			 MyRegistrationForm->AgeEdit->Opacity = 1.0;
-			 MyRegistrationForm->UsernameEdit->Opacity = 1.0;
-			 MyRegistrationForm->PasswordEdit->Opacity = 1.0;
+
 
 			  AnsiString name = MyRegistrationForm->NameEdit->Text;
 			  AnsiString age = MyRegistrationForm->AgeEdit->Text;
@@ -52,6 +53,7 @@ void __fastcall TMyRegistrationForm::RegisterButtonClick(TObject *Sender)
 			  AnsiString password = MyRegistrationForm->PasswordEdit->Text;
 
 			  std::string target = static_cast<std::string>(username);
+
 
 
 			  if(check_user(target) == false){
@@ -69,14 +71,15 @@ void __fastcall TMyRegistrationForm::RegisterButtonClick(TObject *Sender)
 			  MyInfoBox->Show();
 
 
+
                }
 
 
 
 
+				  clear_input();
 
 
-			  clear_input_boxes();
 
 
 
@@ -89,14 +92,17 @@ void __fastcall TMyRegistrationForm::RegisterButtonClick(TObject *Sender)
 				 }
 
 
-				 if(MyRegistrationForm->AgeEdit->Text == "")      {
+				 if(MyRegistrationForm->AgeEdit->Text == "" || !is_digits(age_check))      {
 					MyRegistrationForm->AgeEdit->Opacity = 0.5;
 					AgeEdit->MaxLength = 30;
-					MyRegistrationForm->AgeEdit->Text = err_message;
+					if(is_digits(age_check))
+						MyRegistrationForm->AgeEdit->Text = err_message;
+					else
+						 MyRegistrationForm->AgeEdit->Text = "NUMBERS REQUIRED";
 				 }
 
 				 if(MyRegistrationForm->UsernameEdit->Text  == "") {
-				   MyRegistrationForm->UsernameEdit->Opacity = 0.5;
+					MyRegistrationForm->UsernameEdit->Opacity = 0.5;
 					MyRegistrationForm->UsernameEdit->Text =  err_message;
 				 }
 
@@ -105,43 +111,108 @@ void __fastcall TMyRegistrationForm::RegisterButtonClick(TObject *Sender)
 					 MyRegistrationForm->PasswordEdit->Password = false;
 					 MyRegistrationForm->PasswordEdit->Text =   err_message;
 				 }
+
+
 			 }
-             saved_accounts.close();
+			  saved_accounts.close();
+
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TMyRegistrationForm::NameEditClick(TObject *Sender)
 {
-	if(NameEdit->Text == err_message)
-		MyRegistrationForm->NameEdit->Text = "";
+	if(MyRegistrationForm->NameEdit->Text == err_message)
+				   MyRegistrationForm->NameEdit->Text = "";
 
+			 if(MyRegistrationForm->AgeEdit->Text ==  err_message)  {
+				   MyRegistrationForm->AgeEdit->Text = "";
+				   MyRegistrationForm->AgeEdit->MaxLength = 2;   }
+
+			 if(MyRegistrationForm->UsernameEdit->Text == err_message)
+				   MyRegistrationForm->UsernameEdit->Text = "";
+
+			 if(MyRegistrationForm->PasswordEdit->Text == err_message) {
+				MyRegistrationForm->PasswordEdit->Text = "";
+				MyRegistrationForm->PasswordEdit->Password = true;
+			}
+			 MyRegistrationForm->NameEdit->Opacity = 1.0;
+			 MyRegistrationForm->AgeEdit->Opacity = 1.0;
+			 MyRegistrationForm->UsernameEdit->Opacity = 1.0;
+			 MyRegistrationForm->PasswordEdit->Opacity = 1.0;
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TMyRegistrationForm::AgeEditClick(TObject *Sender)
 {
-	  if(AgeEdit->Text ==  err_message)  {
-		MyRegistrationForm->AgeEdit->Text = "";
-		MyRegistrationForm->AgeEdit->MaxLength = 2;
-	  }
+	 if(MyRegistrationForm->NameEdit->Text == err_message)
+				   MyRegistrationForm->NameEdit->Text = "";
+
+			 if(MyRegistrationForm->AgeEdit->Text ==  err_message ||
+			MyRegistrationForm->AgeEdit->Text ==  "NUMBERS REQUIRED" )  {
+				   MyRegistrationForm->AgeEdit->Text = "";
+				   MyRegistrationForm->AgeEdit->MaxLength = 2;   }
+
+			 if(MyRegistrationForm->UsernameEdit->Text == err_message)
+				   MyRegistrationForm->UsernameEdit->Text = "";
+
+			 if(MyRegistrationForm->PasswordEdit->Text == err_message) {
+				MyRegistrationForm->PasswordEdit->Text = "";
+				MyRegistrationForm->PasswordEdit->Password = true;
+			}
+
+			 MyRegistrationForm->NameEdit->Opacity = 1.0;
+			 MyRegistrationForm->AgeEdit->Opacity = 1.0;
+			 MyRegistrationForm->UsernameEdit->Opacity = 1.0;
+			 MyRegistrationForm->PasswordEdit->Opacity = 1.0;
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TMyRegistrationForm::UsernameEditClick(TObject *Sender)
 {
-if(UsernameEdit->Text == err_message)
-			   MyRegistrationForm->UsernameEdit->Text = "";
+		if(MyRegistrationForm->NameEdit->Text == err_message)
+				   MyRegistrationForm->NameEdit->Text = "";
 
+			 if(MyRegistrationForm->AgeEdit->Text ==  err_message)  {
+				   MyRegistrationForm->AgeEdit->Text = "";
+				   MyRegistrationForm->AgeEdit->MaxLength = 2;   }
 
+			 if(MyRegistrationForm->UsernameEdit->Text == err_message)
+				   MyRegistrationForm->UsernameEdit->Text = "";
+
+			 if(MyRegistrationForm->PasswordEdit->Text == err_message) {
+				MyRegistrationForm->PasswordEdit->Text = "";
+				MyRegistrationForm->PasswordEdit->Password = true;
+			}
+
+			 MyRegistrationForm->NameEdit->Opacity = 1.0;
+			 MyRegistrationForm->AgeEdit->Opacity = 1.0;
+			 MyRegistrationForm->UsernameEdit->Opacity = 1.0;
+			 MyRegistrationForm->PasswordEdit->Opacity = 1.0;
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TMyRegistrationForm::PasswordEditClick(TObject *Sender)
 {
-			if(MyRegistrationForm->PasswordEdit->Text == err_message) {
+		if(MyRegistrationForm->NameEdit->Text == err_message)
+				   MyRegistrationForm->NameEdit->Text = "";
+
+			 if(MyRegistrationForm->AgeEdit->Text ==  err_message)  {
+				   MyRegistrationForm->AgeEdit->Text = "";
+				   MyRegistrationForm->AgeEdit->MaxLength = 2;   }
+
+			 if(MyRegistrationForm->UsernameEdit->Text == err_message)
+				   MyRegistrationForm->UsernameEdit->Text = "";
+
+			 if(MyRegistrationForm->PasswordEdit->Text == err_message) {
 				MyRegistrationForm->PasswordEdit->Text = "";
 				MyRegistrationForm->PasswordEdit->Password = true;
-            }
+			}
+
+
+			 MyRegistrationForm->NameEdit->Opacity = 1.0;
+			 MyRegistrationForm->AgeEdit->Opacity = 1.0;
+			 MyRegistrationForm->UsernameEdit->Opacity = 1.0;
+			 MyRegistrationForm->PasswordEdit->Opacity = 1.0;
 
 }
 //---------------------------------------------------------------------------
@@ -154,9 +225,9 @@ void __fastcall TMyRegistrationForm::AgeEditCanFocus(TObject *Sender, bool &ACan
 	}
 }
 //---------------------------------------------------------------------------
-   void clear_input_boxes(){
+   void clear_input(){
 
-            MyRegistrationForm->PasswordEdit->Password = true;
+			MyRegistrationForm->PasswordEdit->Password = true;
 			MyRegistrationForm->AgeEdit->MaxLength = 2;
 			MyRegistrationForm->NameEdit->Text = "";
 			MyRegistrationForm->AgeEdit->Text = "";
@@ -167,7 +238,7 @@ void __fastcall TMyRegistrationForm::AgeEditCanFocus(TObject *Sender, bool &ACan
 void __fastcall TMyRegistrationForm::FormClose(TObject *Sender, TCloseAction &Action)
 
 {
-		   clear_input_boxes();
+		   clear_input();
 
 }
 //---------------------------------------------------------------------------
@@ -199,6 +270,9 @@ bool check_user(std::string target){
 			 return false;
 }
 
-
+bool is_digits(const std::string &str)
+{
+    return str.find_first_not_of("0123456789") == std::string::npos;
+}
 
 
