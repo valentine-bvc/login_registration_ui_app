@@ -22,6 +22,7 @@ object MyLoginForm: TMyLoginForm
     Size.PlatformDefault = False
     ParentShowHint = False
     ShowHint = False
+    OnClick = UsernameEditClick
   end
   object PasswordEdit: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
@@ -33,6 +34,7 @@ object MyLoginForm: TMyLoginForm
     Size.Width = 177.000000000000000000
     Size.Height = 28.000000000000000000
     Size.PlatformDefault = False
+    OnClick = PasswordEditClick
   end
   object UsernameLabel: TLabel
     StyledSettings = [Family, Style, FontColor]
@@ -66,5 +68,6 @@ object MyLoginForm: TMyLoginForm
     TabOrder = 4
     Text = 'Login'
     TextSettings.Font.Size = 13.000000000000000000
+    OnClick = LoginButtonClick
   end
 end

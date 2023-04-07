@@ -41,6 +41,11 @@ void __fastcall TMyRegistrationForm::RegisterButtonClick(TObject *Sender)
 			 MyRegistrationForm->UsernameEdit->Text != err_message &&
 			 MyRegistrationForm->PasswordEdit->Text != err_message) {
 
+			 MyRegistrationForm->NameEdit->Opacity = 1.0;
+			 MyRegistrationForm->AgeEdit->Opacity = 1.0;
+			 MyRegistrationForm->UsernameEdit->Opacity = 1.0;
+			 MyRegistrationForm->PasswordEdit->Opacity = 1.0;
+
 			  AnsiString name = MyRegistrationForm->NameEdit->Text;
 			  AnsiString age = MyRegistrationForm->AgeEdit->Text;
 			  AnsiString username = MyRegistrationForm->UsernameEdit->Text;
@@ -66,7 +71,7 @@ void __fastcall TMyRegistrationForm::RegisterButtonClick(TObject *Sender)
 
                }
 
-			  saved_accounts.close();
+
 
 
 
@@ -78,30 +83,37 @@ void __fastcall TMyRegistrationForm::RegisterButtonClick(TObject *Sender)
 			 }
 
 			 else {
-				 if(MyRegistrationForm->NameEdit->Text == "")
+				 if(MyRegistrationForm->NameEdit->Text == "") {
+					MyRegistrationForm->NameEdit->Opacity = 0.5;
 					MyRegistrationForm->NameEdit->Text = err_message;
+				 }
 
 
 				 if(MyRegistrationForm->AgeEdit->Text == "")      {
-                    AgeEdit->MaxLength = 30;
+					MyRegistrationForm->AgeEdit->Opacity = 0.5;
+					AgeEdit->MaxLength = 30;
 					MyRegistrationForm->AgeEdit->Text = err_message;
 				 }
 
-				 if(MyRegistrationForm->UsernameEdit->Text  == "")
+				 if(MyRegistrationForm->UsernameEdit->Text  == "") {
+				   MyRegistrationForm->UsernameEdit->Opacity = 0.5;
 					MyRegistrationForm->UsernameEdit->Text =  err_message;
+				 }
 
 				 if (MyRegistrationForm->PasswordEdit->Text == "")   {
-					 PasswordEdit->Password = false;
+					 MyRegistrationForm->PasswordEdit->Opacity = 0.5;
+					 MyRegistrationForm->PasswordEdit->Password = false;
 					 MyRegistrationForm->PasswordEdit->Text =   err_message;
 				 }
 			 }
+             saved_accounts.close();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TMyRegistrationForm::NameEditClick(TObject *Sender)
 {
 	if(NameEdit->Text == err_message)
-		NameEdit->Text = "";
+		MyRegistrationForm->NameEdit->Text = "";
 
 }
 //---------------------------------------------------------------------------
@@ -109,16 +121,16 @@ void __fastcall TMyRegistrationForm::NameEditClick(TObject *Sender)
 void __fastcall TMyRegistrationForm::AgeEditClick(TObject *Sender)
 {
 	  if(AgeEdit->Text ==  err_message)  {
-		AgeEdit->Text = "";
-		AgeEdit->MaxLength = 2;
+		MyRegistrationForm->AgeEdit->Text = "";
+		MyRegistrationForm->AgeEdit->MaxLength = 2;
 	  }
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TMyRegistrationForm::UsernameEditClick(TObject *Sender)
 {
-		   if(UsernameEdit->Text == err_message)
-			   UsernameEdit->Text = "";
+if(UsernameEdit->Text == err_message)
+			   MyRegistrationForm->UsernameEdit->Text = "";
 
 
 }
@@ -126,9 +138,9 @@ void __fastcall TMyRegistrationForm::UsernameEditClick(TObject *Sender)
 
 void __fastcall TMyRegistrationForm::PasswordEditClick(TObject *Sender)
 {
-			if(PasswordEdit->Text == err_message) {
-				PasswordEdit->Text = "";
-				PasswordEdit->Password = true;
+			if(MyRegistrationForm->PasswordEdit->Text == err_message) {
+				MyRegistrationForm->PasswordEdit->Text = "";
+				MyRegistrationForm->PasswordEdit->Password = true;
             }
 
 }
@@ -137,8 +149,8 @@ void __fastcall TMyRegistrationForm::PasswordEditClick(TObject *Sender)
 void __fastcall TMyRegistrationForm::AgeEditCanFocus(TObject *Sender, bool &ACanFocus)
 
 {         if(AgeEdit->Text ==  err_message)   {
-				AgeEdit->Text = "";
-				AgeEdit->MaxLength = 2;
+				MyRegistrationForm->AgeEdit->Text = "";
+				MyRegistrationForm->AgeEdit->MaxLength = 2;
 	}
 }
 //---------------------------------------------------------------------------
@@ -166,7 +178,7 @@ bool check_user(std::string target){
 	   std::string line {};
 	   std::string word {};
 	   if(!saved_accounts.is_open()) {
-	   saved_accounts.close();
+	   //saved_accounts.close();
 			return true;
 	   }
 
