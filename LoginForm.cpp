@@ -50,7 +50,7 @@ void __fastcall TMyLoginForm::LoginButtonClick(TObject *Sender)
 
 			 if(found_username)  {
 				if(wrong_pass_flag)
-					PopupShow("Error!", "Incorrect password!");
+					PopupShow("Error!", "Incorrect username or password!");
 
 
 
@@ -64,7 +64,7 @@ void __fastcall TMyLoginForm::LoginButtonClick(TObject *Sender)
 
 
 			 else
-			   PopupShow("Error", "Account not found!");
+			   PopupShow("Error", "Incorrect username or password!");
 
 
 
