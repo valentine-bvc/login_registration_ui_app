@@ -182,6 +182,9 @@
             <DependentOn>RegistrationForm.h</DependentOn>
             <BuildOrder>4</BuildOrder>
         </CppCompile>
+        <None Include="RegistrationFormExtra.h">
+            <BuildOrder>7</BuildOrder>
+        </None>
         <FormResources Include="MainForm.fmx"/>
         <FormResources Include="PopupBox.fmx"/>
         <FormResources Include="RegistrationForm.fmx"/>
