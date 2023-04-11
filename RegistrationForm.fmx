@@ -32,7 +32,6 @@ object MyRegistrationForm: TMyRegistrationForm
     Size.Width = 177.000000000000000000
     Size.Height = 30.000000000000000000
     Size.PlatformDefault = False
-    OnCanFocus = AgeEditCanFocus
     OnClick = AgeEditClick
   end
   object UsernameEdit: TEdit

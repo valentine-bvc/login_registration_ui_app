@@ -157,6 +157,9 @@
             <DependentOn>LoginForm.h</DependentOn>
             <BuildOrder>3</BuildOrder>
         </CppCompile>
+        <None Include="LoginFormExtra.h">
+            <BuildOrder>8</BuildOrder>
+        </None>
         <CppCompile Include="login_registration.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>

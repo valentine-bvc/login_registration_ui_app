@@ -23,4 +23,6 @@ public:		// User declarations
 //---------------------------------------------------------------------------
 extern PACKAGE TMyInfoBox *MyInfoBox;
 //---------------------------------------------------------------------------
+
+void PopupShow(String ucaption, String umessage); //show message box with custom information
 #endif

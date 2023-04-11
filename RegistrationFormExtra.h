@@ -3,7 +3,7 @@
   ////////////////////////////////////////////////////////////////////////
 
 
-#pragma once
+#pragma hdrstop
 
 //#include "MainForm.h"
 #include "RegistrationForm.h"
@@ -15,21 +15,22 @@
 #include <iostream>
 
 //custom functions
-void clear_on_error(); // clears text box if error message is displaying
-void clear_input();  //clear all fields, activate password and limit age number
+void clear_on_error(); //clears text box if error message is displaying
+void clear_all_input();  //clear all fields, activate password and limit age number
 bool find_user(std::string); //check if the username is already registered
 bool is_digits(const std::string &str);  //check if age field is valid
 std::string ansi_to_string(AnsiString st); //convert Ansistring to std::string
 bool ready_to_register(const std::string& age);  //check if all fields are valid for registering a new user
-void input_required_error (const std::string& age); //handle the fields required warning
+void input_required_error (const std::string& age); //handle the fields requiring warning
 void reset_opacity();     //reset text opacity to default for all text boxes
+
 
 //custom variables
 const String err_message {"DETAILS REQUIRED"};
 const  String err_age {"AGE REQUIRED"};
 
 
-
+ ///////////////////////////////////////////////////////////////////////////////
 
 
  void clear_on_error(){
@@ -58,7 +59,7 @@ const  String err_age {"AGE REQUIRED"};
 
 
 
-   void clear_input(){
+   void clear_all_input(){
 	//clear all fields, activate password and limit age number
 
 			MyRegistrationForm->PasswordEdit->Password = true;
@@ -72,7 +73,7 @@ const  String err_age {"AGE REQUIRED"};
 void __fastcall TMyRegistrationForm::FormClose(TObject *Sender, TCloseAction &Action)
 
 {
-		   clear_input();
+		   clear_all_input();
 
 }
 //---------------------------------------------------------------------------
@@ -138,7 +139,8 @@ if(MyRegistrationForm->NameEdit->Text != "" &&
 
 void input_required_error (const std::string& age) {
 //handle the fields required warning
-	if(MyRegistrationForm->NameEdit->Text == "") {
+				if(MyRegistrationForm->NameEdit->Text == "" ||
+				   MyRegistrationForm->NameEdit->Text == err_message) {
 					MyRegistrationForm->NameEdit->Opacity = 0.5;
 					MyRegistrationForm->NameEdit->Text = err_message;
 				 }
@@ -150,12 +152,14 @@ void input_required_error (const std::string& age) {
 					MyRegistrationForm->AgeEdit->Text = err_age;
 				 }
 
-				 if(MyRegistrationForm->UsernameEdit->Text  == "") {
+				 if(MyRegistrationForm->UsernameEdit->Text  == "" ||
+				    MyRegistrationForm->UsernameEdit->Text == err_message) {
 					MyRegistrationForm->UsernameEdit->Opacity = 0.5;
 					MyRegistrationForm->UsernameEdit->Text =  err_message;
 				 }
 
-				 if (MyRegistrationForm->PasswordEdit->Text == "")   {
+				 if (MyRegistrationForm->PasswordEdit->Text == "" ||
+					 MyRegistrationForm->PasswordEdit->Text == err_message)   {
 					 MyRegistrationForm->PasswordEdit->Opacity = 0.5;
 					 MyRegistrationForm->PasswordEdit->Password = false;
 					 MyRegistrationForm->PasswordEdit->Text =   err_message;
@@ -169,3 +173,6 @@ void reset_opacity(){
   MyRegistrationForm->UsernameEdit->Opacity = 1.0;
   MyRegistrationForm->PasswordEdit->Opacity = 1.0;
 }
+
+
+
